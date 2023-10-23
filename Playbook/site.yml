@@ -1,0 +1,23 @@
+
+---
+- hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Update Homebrew
+      command: /usr/local/bin/brew update
+      changed_when: false
+
+    - name: Upgrade Homebrew packages
+      command: /usr/local/bin/brew upgrade
+      changed_when: false
+
+    - name: Install necessary packages
+      homebrew:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - coreutils
+
+    - name: Set cron job to check uptime of the server every 12 am
+      command: "echo '0 0 * * * /usr/bin/uptime > /var/log/uptime_check.log 2>&1' | crontab -"

@@ -1,0 +1,3 @@
+192.168.60.12
+webserver1 ansible_host=192.168.60.12 ansible_user=myuser ansible_ssh_pass=mypassword
+webserver2 ansible_host=192.168.60.11 ansible_user=myuser ansible_ssh_pass=mypassword
